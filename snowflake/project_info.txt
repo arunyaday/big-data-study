@@ -1,0 +1,29 @@
+Project 1 : News Data Analysis with event driven incremental load in Snowflake table
+Tech Stack : Airflow, Google Cloud Storage, Python, Snowflake (Industrial Project)
+-> Setup account on newsapi.org
+-> Python code to extract data from api endpoint and write data in new file in google Storage Bucket
+-> Create storage integration and external stage in snowflake
+-> Airflow dag to read data from api, write it in new file in google storage bucket and load data from external stage to target snowflake table
+
+============================================
+
+Project 2 : Movie Booking CDC data real time aggregation in Snowflake Dynamic Table
+Tech Stack : Python, Snowflake Dynamic Table, Snowflake Stream, Snowflake Tasks, Streamlit (Industrial Project)
+-> Create Snowflake table which will keep raw movies booking data
+-> Setup stream on raw table
+-> Create snowflake table (Bronze layer) to keep raw data along with cdc metadata information
+-> Schedule task to ingest incremental data from stream to bronze table every 1 minute
+-> Create dynamic table (Silver layer) to keep filtered data from bronze table
+-> Create dynamic table (Gold layer) with aggregation logic on top of silver table
+-> Schedule task to refresh gold table every 2 minutes
+-> Create streamlit application in snowflake for real time dashboard using snowpark library
+
+======================================
+
+Project 3 : Car rental data batch ingestion with SCD2 merge in snowflake table (Industrial Project)
+Tech Stack : Python, PySpark, GCP Dataproc, Airflow, Snowflake
+-> Create location_dim, date_dim, car_dim static tables in Snowflake
+-> Create table and schema for customer_dim to perform SCD2 merge
+-> Create table and schema for rentals_fact
+-> PySpark code to read all dims from snowflake and fact table, perform transformation and append processed data in rentals_fact
+-> Airflow dag to read parameterized daily car_rentals & customer data from google storage bucket, perform SCD2 merge on customer_dim table, trigger pyspark job on dataproc cluster
